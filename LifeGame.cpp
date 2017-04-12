@@ -9,6 +9,8 @@ using namespace std;
 
 int main()
 {
+	setlocale(LC_ALL, "Russian");
+
 	point world[__WORLD_WIDTH__][__WORLD_HEIGHT__];
 	point prev_world[__WORLD_WIDTH__][__WORLD_HEIGHT__];
 
@@ -18,6 +20,7 @@ int main()
 	bool is_optimal = false;
 
 	do {
+		system("cls");
 		a.print_world(world);
 		a.copy_world(world, prev_world);
 		a.next_generation(world, prev_world);
@@ -26,14 +29,14 @@ int main()
 		live_points = a.get_live_count(world);
 
 		if (is_optimal) {
-			cout << "Optimal configuration detected" << endl;
+			cout << "Стабильная конфигурация" << endl;
 		}
 
 		if (live_points == 0) {
-			cout << "All points died" << endl;
+			cout << "Все клетки умерли" << endl;
 		}
 		msleep(1000);
 	} while (live_points != 0 && !is_optimal);
-
+	system("pause");
 	return 0;
 }
